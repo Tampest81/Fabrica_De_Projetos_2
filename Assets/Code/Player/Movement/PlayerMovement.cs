@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour // Script básico de movimentação 
             case States.Dashing:
 
                 dashSpeed -= dashSpeed * 15 * Time.deltaTime;
-                if (dashSpeed <= 1)
+                if (dashSpeed <= 20)
                 {
                     states = States.Default;
                 }
