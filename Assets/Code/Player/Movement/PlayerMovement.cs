@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UIElements;
-
 enum States
 {
     Default,
@@ -12,6 +11,7 @@ enum States
 }
 public class PlayerMovement : MonoBehaviour // Script básico de movimentação para platformer 2D.
 {
+    #region Variáveis
     [Header("Variáveis Gerais")]
     private States states;
     public Rigidbody2D playerRB;
@@ -36,15 +36,13 @@ public class PlayerMovement : MonoBehaviour // Script básico de movimentação 
     private int hrInputCount;
     [SerializeField] private float timeBetweenPresses;
     private float dashInputTimer;
-
-    // Métodos Default da Unity //
+    #endregion
     private void Update()
     {
         switch (states) 
         {
             case States.Default:
-
-                // Run Input //
+                #region Run Input
                 hrInput = Input.GetAxis("Horizontal");
                 if (hrInput > 0)
                 {
@@ -54,9 +52,8 @@ public class PlayerMovement : MonoBehaviour // Script básico de movimentação 
                 {
                     this.transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
-
-                // Jump Input //
-
+                #endregion
+                #region Jump Input
                 isOnGround = Physics2D.OverlapCircle(new Vector2(this.transform.position.x, this.transform.position.y - 0.5f), 0.25f, ground);
                 if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true)
                 {
@@ -72,8 +69,8 @@ public class PlayerMovement : MonoBehaviour // Script básico de movimentação 
                 {
                     isJumping = false;
                 }
-
-                // Dash Input Omnidirecional //
+                #endregion
+                #region Dash Input ( Omnidirectional )
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
                     dashDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position).normalized;
@@ -81,16 +78,16 @@ public class PlayerMovement : MonoBehaviour // Script básico de movimentação 
                     dashSpeed = dashSpeedMax;
                     states = States.Dashing;
                 }
-
-                // Dash Input Forward //
+                #endregion
+                #region Dash Input ( Foward )
                 if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
                     dashDirection = this.transform.right;
                     dashSpeed = dashSpeedMax;
                     states = States.Dashing;
                 }
-
-                // Dash Input Horizontal //
+                #endregion
+                #region Dash Input ( Horizontal - Double Tap )
                 dashInputTimer -= Time.deltaTime;
                 if (dashInputTimer <= 0)
                 {
@@ -130,16 +127,16 @@ public class PlayerMovement : MonoBehaviour // Script básico de movimentação 
                         states = States.Dashing;
                         break;
                 }
-
+                #endregion
                 break;
             case States.Dashing:
-
+                #region Dash ( Timer )
                 dashSpeed -= dashSpeed * 15 * Time.deltaTime;
                 if (dashSpeed <= 20)
                 {
                     states = States.Default;
                 }
-
+                #endregion
                 break;
         }
     }
@@ -148,21 +145,20 @@ public class PlayerMovement : MonoBehaviour // Script básico de movimentação 
         switch (states)
         {
             case States.Default:
-
-                // Run //
+                #region Run
                 playerRB.velocity = new Vector2(hrInput * hrMovementSpeed, playerRB.velocity.y);
-
-                // Jump //
+                #endregion
+                #region Jump
                 if (isJumping == true)
                 {
                     playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
                 }
-
+                #endregion
                 break;
             case States.Dashing:
-
+                #region Dash ( Movement )
                 playerRB.velocity = dashDirection * dashSpeed;
-
+                #endregion
                 break;
         }
     }
