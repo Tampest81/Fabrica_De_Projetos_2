@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
-
 public class WeaponManager : MonoBehaviour
 {
     #region Variáveis
@@ -11,12 +10,15 @@ public class WeaponManager : MonoBehaviour
     private float ammoReserves;
     public float magazineCurrent = 5;
     private float magazineMax = 5;
+    public float reloadTime;
+    public float reloadTimer;
     private Vector2 aimDirection;
     private float rotZ;
     private ContactFilter2D enemiesFilter;
     [SerializeField] private LayerMask enemiesLayer;
     [SerializeField] private GameObject bulletTrail;
     private List<RaycastHit2D> enemiesHit = new List<RaycastHit2D>();
+    private States states;
     #endregion
     void Start()
     {
@@ -25,12 +27,24 @@ public class WeaponManager : MonoBehaviour
     }
     void Update()
     {
-        Aim();
-        Shoot();
-        if (Input.GetKeyDown(KeyCode.R))
+        switch (states)
         {
-            Reload();
+            case States.Reloading:
+                reloadTimer -= Time.deltaTime;
+                if (reloadTimer <= 0)
+                {
+                    states = States.Default;
+                }
+                break;
+            case States.Default:
+                Shoot();
+                if (Input.GetKeyDown(KeyCode.R) & ammoReservesTotal > 0)
+                {
+                    Reload();
+                }
+                break;
         }
+        Aim();
     }
     private void Aim()
     {
@@ -53,7 +67,7 @@ public class WeaponManager : MonoBehaviour
             }
             magazineCurrent--;
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0))
+        else if (Input.GetKeyDown(KeyCode.Mouse0) && ammoReservesTotal > 0)
         {
             Reload();
         }
@@ -73,8 +87,9 @@ public class WeaponManager : MonoBehaviour
         {
             reloadAmount = ammoReservesTotal;
         }
-
         magazineCurrent += reloadAmount;
         ammoReservesTotal -= reloadAmount;
+        reloadTimer = reloadTime;
+        states = States.Reloading;
     }
 }

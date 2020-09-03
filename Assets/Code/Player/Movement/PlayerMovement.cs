@@ -8,6 +8,7 @@ enum States
 {
     Default,
     Dashing,
+    Reloading
 }
 public class PlayerMovement : MonoBehaviour // Script básico de movimentação para platformer 2D.
 {
