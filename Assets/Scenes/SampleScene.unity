@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 70699439}
   - component: {fileID: 70699441}
   - component: {fileID: 70699440}
+  - component: {fileID: 70699442}
   m_Layer: 8
   m_Name: 3
   m_TagString: Untagged
@@ -164,7 +165,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -229,6 +230,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &70699442
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70699438}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &132801636
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -99.516, y: 21.100006}
+  m_AnchoredPosition: {x: -99.51599, y: 21.100006}
   m_SizeDelta: {x: 200, y: 42.199036}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &132801638
@@ -458,6 +478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoReservesTotal: 20
   magazineCurrent: 5
+  reloadTime: 0
+  reloadTimer: 0
   enemiesLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -982,6 +1004,7 @@ GameObject:
   - component: {fileID: 1357598627}
   - component: {fileID: 1357598629}
   - component: {fileID: 1357598628}
+  - component: {fileID: 1357598630}
   m_Layer: 8
   m_Name: 2
   m_TagString: Untagged
@@ -1014,7 +1037,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -1079,6 +1102,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!251 &1357598630
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357598626}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1001 &1358841325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1472,6 +1514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoDataText: {fileID: 511760687}
   wpnManager: {fileID: 255833758}
+  reloadTimerUI: {fileID: 0}
 --- !u!1 &1723785122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,7 +1614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 67.7, y: -0.0032348633}
+  m_AnchoredPosition: {x: 67.70001, y: -0.0032348633}
   m_SizeDelta: {x: -134.43256, y: 0.9935913}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1906268324
