@@ -1,95 +1,87 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.UIElements;
+using UnityEditorInternal;
+
 public class WeaponManager : MonoBehaviour
 {
-    #region Variáveis
-    public float ammoReservesTotal = 20;
-    private float ammoReserves;
-    public float magazineCurrent = 5;
-    private float magazineMax = 5;
-    public float reloadTime;
-    public float reloadTimer;
-    private Vector2 aimDirection;
-    private float rotZ;
-    private ContactFilter2D enemiesFilter;
-    [SerializeField] private LayerMask enemiesLayer;
-    [SerializeField] private GameObject bulletTrail;
-    private List<RaycastHit2D> enemiesHit = new List<RaycastHit2D>();
-    private States states;
-    #endregion
-    void Start()
+    public static Vector2 aimDirection;
+
+    [SerializeField] Sprite pistolSprite;
+    [SerializeField] Sprite shotgunSprite;
+    [SerializeField] Sprite machinegunSprite;
+
+    public Gun[] guns = new Gun[3];
+    private Gun pistol = new Gun(false, 0.3f, 1, 0, 1, 10, 20, 5, 0.5f, null);
+    private Gun shotgun = new Gun(false, 0.3f, 1, 0.3f, 10, 7.5f, 10, 2, 1, null);
+    private Gun machinegun = new Gun(true, 0.05f, 1, 0.1f, 1, 10, 200, 50, 2, null);
+    public int currentGunIndex;
+
+    SpriteRenderer spriteRenderer;
+
+    RaycastHit2D[] raycastResults = new RaycastHit2D[1];
+
+    [SerializeField] private LayerMask layersToHit;
+
+    private void Awake()
     {
-        enemiesFilter.useLayerMask = true;
-        enemiesFilter.SetLayerMask(enemiesLayer);
+        guns[0] = pistol;
+        guns[1] = shotgun;
+        guns[2] = machinegun;
+
+        currentGunIndex = 0;
+
+        pistol.gunSprite = pistolSprite;
+        shotgun.gunSprite = shotgunSprite;
+        machinegun.gunSprite = machinegunSprite;
+
+        pistol.ReloadOnAwake();
+        shotgun.ReloadOnAwake();
+        machinegun.ReloadOnAwake();
+
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
     }
-    void Update()
+    private void Update()
     {
-        switch (states)
+        switch (guns[currentGunIndex]._isReloading)
         {
-            case States.Reloading:
-                reloadTimer -= Time.deltaTime;
-                if (reloadTimer <= 0)
-                {
-                    states = States.Default;
-                }
+            case true:
+
+                guns[currentGunIndex]._reloadTimer -= Time.deltaTime;
+                if (guns[currentGunIndex]._reloadTimer <= 0)
+                    guns[currentGunIndex]._isReloading = false;
+
                 break;
-            case States.Default:
-                Shoot();
-                if (Input.GetKeyDown(KeyCode.R) & ammoReservesTotal > 0)
-                {
-                    Reload();
-                }
+            case false:
+
+                SelectGun();
+                guns[currentGunIndex].Shoot(this.transform.position, layersToHit);
+                guns[currentGunIndex].Reload();
+
                 break;
         }
         Aim();
+        UpdateGunSprite();
+
+        Debug.DrawRay(this.transform.position, aimDirection*10, Color.red);
     }
     private void Aim()
     {
         aimDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
         aimDirection.Normalize();
-        rotZ = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        float rotZ = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
-    private void Shoot()
+    private void SelectGun()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && magazineCurrent > 0)
-        {
-            enemiesHit.Clear();
-            Physics2D.Raycast(this.transform.position, aimDirection, enemiesFilter, enemiesHit, 10);
-            var trailInstance = Instantiate(bulletTrail, this.transform.position, Quaternion.Euler(0, 0, rotZ + -90));
-            trailInstance.transform.localScale = new Vector3(.0625f, 10, 1);
-            foreach (var element in enemiesHit)
-            {
-                element.collider.gameObject.GetComponent<TestEnemy>().Damage(1);
-            }
-            magazineCurrent--;
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse0) && ammoReservesTotal > 0)
-        {
-            Reload();
-        }
+        currentGunIndex += (int)Input.mouseScrollDelta.y;
+        if (currentGunIndex > 2)
+            currentGunIndex = 0;
+        else if (currentGunIndex < 0)
+            currentGunIndex = 2;
     }
-    private void Reload()
+    private void UpdateGunSprite()
     {
-        float reloadAmount;
-        if (ammoReservesTotal > magazineMax)
-        {
-            reloadAmount = magazineMax - magazineCurrent;
-        }
-        else if (magazineCurrent == 0)
-        {
-            reloadAmount = ammoReservesTotal;
-        }
-        else
-        {
-            reloadAmount = ammoReservesTotal;
-        }
-        magazineCurrent += reloadAmount;
-        ammoReservesTotal -= reloadAmount;
-        reloadTimer = reloadTime;
-        states = States.Reloading;
+        spriteRenderer.sprite = guns[currentGunIndex].gunSprite;
     }
 }

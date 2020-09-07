@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class AmmoHUDTest : MonoBehaviour
 {
     public TextMeshProUGUI ammoDataText;
+    public Image gunImage;
     public WeaponManager wpnManager;
     public Slider reloadTimerUI;
 
@@ -17,9 +17,9 @@ public class AmmoHUDTest : MonoBehaviour
 
     void Update()
     {
-        ammoDataText.text = wpnManager.magazineCurrent + " / " + wpnManager.ammoReservesTotal;
-
-        reloadTimerUI.maxValue = wpnManager.reloadTime;
-        reloadTimerUI.value = wpnManager.reloadTimer;
+        ammoDataText.text = wpnManager.guns[wpnManager.currentGunIndex]._magazineCurrent + " / " + wpnManager.guns[wpnManager.currentGunIndex]._ammoCurrent;
+        gunImage.sprite = wpnManager.guns[wpnManager.currentGunIndex].gunSprite;
+        reloadTimerUI.maxValue = wpnManager.guns[wpnManager.currentGunIndex]._reloadDuration;
+        reloadTimerUI.value = wpnManager.guns[wpnManager.currentGunIndex]._reloadTimer;
     }
 }
