@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UIElements;
-enum States
+public enum States
 {
     Default,
     Dashing,
