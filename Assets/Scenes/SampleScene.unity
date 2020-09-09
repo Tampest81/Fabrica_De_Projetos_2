@@ -473,18 +473,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 255833756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76823b559a7f7d4ebb681ddafa23fde, type: 3}
+  m_Script: {fileID: 11500000, guid: 60fc377dcec6acb4b95ca77d9bf38aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoReservesTotal: 20
-  magazineCurrent: 5
-  reloadTime: 0
-  reloadTimer: 0
-  enemiesLayer:
+  pistolSprite: {fileID: 21300000, guid: 9e417ea4c60723a429d66eb800d8cbf1, type: 3}
+  shotgunSprite: {fileID: 0}
+  machinegunSprite: {fileID: 0}
+  currentGunIndex: 0
+  layersToHit:
     serializedVersion: 2
-    m_Bits: 512
-  bulletTrail: {fileID: 7360756956161834807, guid: 61b0e24a4bfabf446935b03c1fcded87,
-    type: 3}
+    m_Bits: 0
 --- !u!1 &329624377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,6 +1511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoDataText: {fileID: 511760687}
+  gunImage: {fileID: 0}
   wpnManager: {fileID: 255833758}
   reloadTimerUI: {fileID: 0}
 --- !u!1 &1723785122
