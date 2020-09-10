@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
             canJump = false;
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space) && playerRB.velocity.y > 0)
         {
             playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y / 3);
         }

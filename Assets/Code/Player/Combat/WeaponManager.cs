@@ -82,7 +82,6 @@ public class WeaponManager : MonoBehaviour
     }
     private void UpdateGunSprite()
     {
-        print (this.transform.rotation.eulerAngles);
         spriteRenderer.sprite = guns[currentGunIndex].gunSprite;
         if (this.transform.rotation.eulerAngles.z > 90 && this.transform.rotation.eulerAngles.z < 270)
         {
