@@ -12,9 +12,9 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] Sprite machinegunSprite;
 
     public Gun[] guns = new Gun[3];
-    private Gun pistol = new Gun(false, 0.3f, 1, 0, 1, 10, 20, 5, 0.5f, null);
-    private Gun shotgun = new Gun(false, 0.3f, 1, 0.3f, 10, 7.5f, 10, 2, 1, null);
-    private Gun machinegun = new Gun(true, 0.05f, 1, 0.1f, 1, 10, 200, 50, 2, null);
+    private Gun pistol = new Gun(true, false, 0.3f, 1, 0, 1, 10, 20, 5, 0.5f, null, 0, null);
+    private Gun shotgun = new Gun(true, false, 0.3f, 1, 0.2f, 10, 7.5f, 10, 2, 1, null, 0, null);
+    private Gun machinegun = new Gun(true, true, 0.05f, 1, 0.1f, 1, 10, 200, 50, 2, null, 0, null);
     public int currentGunIndex;
 
     SpriteRenderer spriteRenderer;
@@ -55,7 +55,7 @@ public class WeaponManager : MonoBehaviour
             case false:
 
                 SelectGun();
-                guns[currentGunIndex].Shoot(this.transform.position, layersToHit);
+                guns[currentGunIndex].Shoot(this.transform.position,aimDirection , layersToHit, true);
                 guns[currentGunIndex].Reload();
 
                 break;

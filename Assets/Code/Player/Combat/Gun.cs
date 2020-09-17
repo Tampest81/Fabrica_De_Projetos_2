@@ -19,10 +19,14 @@ public class Gun
     float _damagePerBullet;
     bool _canHoldTrigger;
     public bool _isReloading;
+    private bool _isRaycast;
+    public GameObject _projectilePrefab;
+    private float _projectileSpeed;
     public Sprite gunSprite;
 
-    public Gun(bool canHoldTrigger, float timeBetweenShots, float damagePerBullet, float spread, int bulletsPerShot, float range, int ammoMax, int magazineMax, float reloadDuration, Sprite Sprite)
+    public Gun(bool isRaycast, bool canHoldTrigger, float timeBetweenShots, float damagePerBullet, float spread, int bulletsPerShot, float range, int ammoMax, int magazineMax, float reloadDuration, GameObject projectilePrefab, float projectileSpeed, Sprite sprite)
     {
+        _isRaycast = isRaycast;
         _canHoldTrigger = canHoldTrigger;
         _timeBetweenShots = timeBetweenShots;
         _damagePerBullet = damagePerBullet;
@@ -32,25 +36,34 @@ public class Gun
         _ammoMax = ammoMax;
         _magazineMax = magazineMax;
         _reloadDuration = reloadDuration;
-        gunSprite = Sprite;
+        _projectilePrefab = projectilePrefab;
+        _projectileSpeed = projectileSpeed;
+        gunSprite = sprite;
     }
     
-    public void Shoot(Vector3 originPosition, LayerMask mask)
+    public void Shoot(Vector3 originPosition, Vector3 aimDirection, LayerMask mask, bool isPlayer)
     {
         _timeBetweenShotsCounter -= Time.deltaTime;
-        if (_canHoldTrigger)
+        if (isPlayer)
         {
-            if (Input.GetKey(KeyCode.Mouse0) && _timeBetweenShotsCounter <= 0 && _magazineCurrent > 0)
+            if (_canHoldTrigger)
             {
-                _Shoot(originPosition, mask);
+                if (Input.GetKey(KeyCode.Mouse0) && _timeBetweenShotsCounter <= 0 && _magazineCurrent > 0)
+                {
+                    _Shoot(originPosition, aimDirection, mask);
+                }
+            }
+            else if (!_canHoldTrigger)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0) && _timeBetweenShotsCounter <= 0 && _magazineCurrent > 0)
+                {
+                    _Shoot(originPosition, aimDirection, mask);
+                }
             }
         }
-        else if (!_canHoldTrigger)
+        else 
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && _timeBetweenShotsCounter <= 0 && _magazineCurrent > 0)
-            {
-                _Shoot(originPosition, mask);
-            }
+            _Shoot(originPosition, aimDirection, mask);
         }
     }
     public void Reload()
@@ -70,25 +83,35 @@ public class Gun
         _ammoCurrent = _ammoMax;
         _magazineCurrent = _magazineMax;
     }
-    private void _Shoot(Vector3 originPosition, LayerMask mask)
+    private void _Shoot(Vector3 originPosition, Vector3 aimDirection, LayerMask mask)
     {
         _timeBetweenShotsCounter = _timeBetweenShots;
         _magazineCurrent--;
         for (int i = 0; i < _bulletsPerShot; i++)
         {
-            Vector2 aimDirectionSpread = new Vector2(WeaponManager.aimDirection.x + Random.Range(-_spread, _spread), WeaponManager.aimDirection.y + Random.Range(-_spread, _spread));
+            Vector2 aimDirectionSpread = new Vector2(aimDirection.x + Random.Range(-_spread, _spread), aimDirection.y + Random.Range(-_spread, _spread));
             aimDirectionSpread.Normalize();
-            Debug.DrawRay(originPosition, aimDirectionSpread * _range, Color.cyan, 0.1f);
 
-            RaycastHit2D hit;
-
-            if(Physics2D.Raycast(originPosition, aimDirectionSpread, _range, mask)) // Checks if Raycast hit in order to prevent error.
+            if (_isRaycast)
             {
-                hit = Physics2D.Raycast(originPosition, aimDirectionSpread, _range, mask);
-                if (hit.collider.CompareTag("Enemy"))
+                Debug.DrawRay(originPosition, aimDirectionSpread * _range, Color.cyan, 0.1f);
+
+                RaycastHit2D hit;
+
+                if (Physics2D.Raycast(originPosition, aimDirectionSpread, _range, mask)) // Checks if Raycast hit in order to prevent error.
                 {
-                    hit.collider.gameObject.GetComponent<TestEnemy>().health -= _damagePerBullet;
+                    hit = Physics2D.Raycast(originPosition, aimDirectionSpread, _range, mask);
+                    if (hit.collider.CompareTag("Enemy"))
+                    {
+                        hit.collider.gameObject.GetComponent<TestEnemy>().health -= _damagePerBullet;
+                    }
                 }
+            }
+            else
+            {
+                var projectile = MonoBehaviour.Instantiate(_projectilePrefab, originPosition, Quaternion.Euler(aimDirectionSpread));
+                projectile.GetComponent<Rigidbody2D>().velocity = aimDirectionSpread * _projectileSpeed;
+                MonoBehaviour.Destroy(projectile, 2);
             }
         }
     }
