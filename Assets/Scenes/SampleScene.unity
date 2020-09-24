@@ -668,7 +668,7 @@ Transform:
   m_GameObject: {fileID: 255833756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 738699328}
   m_RootOrder: 1
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pistolSprite: {fileID: 21300000, guid: ab778275eeb57ef41bc2e801f709f8ae, type: 3}
   shotgunSprite: {fileID: 21300000, guid: 34c921e42245a3a4c88cd58af61503c2, type: 3}
-  machinegunSprite: {fileID: 21300000, guid: 9e417ea4c60723a429d66eb800d8cbf1, type: 3}
+  machinegunSprite: {fileID: 21300000, guid: 73a945706bf854a4e8ee57560cb5626e, type: 3}
   currentGunIndex: 0
   layersToHit:
     serializedVersion: 2

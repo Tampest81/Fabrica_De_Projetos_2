@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Test_EnemyAI : MonoBehaviour
 {
+    [SerializeField] private float health;
+
     Rigidbody2D rb;
 
     [SerializeField] LayerMask groundLayer;
@@ -49,7 +51,7 @@ public class Test_EnemyAI : MonoBehaviour
         _timer2nomeruimporra -= Time.deltaTime;
 
         _checkBoxPosition = new Vector3(this.transform.position.x + checkBoxPosition.x, this.transform.position.y);
-        playerDirection = (player.transform.position + new Vector3(0, 1)) - (this.transform.position + new Vector3(0, 1));
+        playerDirection = (player.transform.position + new Vector3(0, .5f)) - (this.transform.position + new Vector3(0, 1));
         playerDirection.Normalize();
         LookForPlayer();
         playerDirAngle = Vector3.Angle(this.transform.right, playerDirection);
@@ -155,6 +157,16 @@ public class Test_EnemyAI : MonoBehaviour
         {
             _attackCount = 0;
             _timer2nomeruimporra = 3;
+        }
+    }
+    
+    // PlaceHolder //
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

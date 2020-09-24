@@ -405,6 +405,7 @@ MonoBehaviour:
   hrMovementSpeed: 12.5
   jumpForce: 30
   dashSpeedMax: 80
+  health: 10
 --- !u!70 &939849626
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -600,7 +601,7 @@ Transform:
   m_GameObject: {fileID: 1238156565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 939849629}
   m_RootOrder: 1
@@ -619,7 +620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pistolSprite: {fileID: 21300000, guid: ab778275eeb57ef41bc2e801f709f8ae, type: 3}
   shotgunSprite: {fileID: 21300000, guid: 34c921e42245a3a4c88cd58af61503c2, type: 3}
-  machinegunSprite: {fileID: 21300000, guid: 9e417ea4c60723a429d66eb800d8cbf1, type: 3}
+  machinegunSprite: {fileID: 21300000, guid: 73a945706bf854a4e8ee57560cb5626e, type: 3}
   currentGunIndex: 0
   layersToHit:
     serializedVersion: 2
@@ -795,9 +796,9 @@ GameObject:
   - component: {fileID: 1715952799}
   - component: {fileID: 1715952798}
   - component: {fileID: 1715952800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Test_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -916,6 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393ea4697a761614ca981bc4cbef8315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -931,6 +933,8 @@ MonoBehaviour:
   projectile: {fileID: 3336837571163035675, guid: 3b7fb7fa182bc464eaaaf424b9e45ddd,
     type: 3}
   projectileSpeed: 7.5
+  _attackCount: 0
+  attackCount: 3
 --- !u!1 &1716465311
 GameObject:
   m_ObjectHideFlags: 0

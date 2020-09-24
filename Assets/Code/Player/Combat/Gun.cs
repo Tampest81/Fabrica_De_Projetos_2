@@ -17,6 +17,7 @@ public class Gun
     public float _reloadDuration;
     public float _reloadTimer;
     float _damagePerBullet;
+    float _damageFallOff;
     bool _canHoldTrigger;
     public bool _isReloading;
     private bool _isRaycast;
@@ -98,12 +99,22 @@ public class Gun
 
                 RaycastHit2D hit;
 
-                if (Physics2D.Raycast(originPosition, aimDirectionSpread, _range, mask)) // Checks if Raycast hit in order to prevent error.
+                if (Physics2D.Raycast(originPosition, aimDirectionSpread, Mathf.Infinity, mask)) // Checks if Raycast hit in order to prevent error.
                 {
-                    hit = Physics2D.Raycast(originPosition, aimDirectionSpread, _range, mask);
-                    if (hit.collider.CompareTag("Enemy"))
+                    hit = Physics2D.Raycast(originPosition, aimDirectionSpread, Mathf.Infinity, mask);
+
+                    _damageFallOff = _damagePerBullet;
+                    if (hit.distance > _range)
                     {
-                        hit.collider.gameObject.GetComponent<TestEnemy>().health -= _damagePerBullet;
+                        _damageFallOff /= 2;
+                    }
+
+                    if (hit.collider.CompareTag("Enemy") && hit.distance <= (_range * 2))
+                    {
+                        if (hit.collider.GetComponent<Test_EnemyAI>())
+                            hit.collider.gameObject.GetComponent<Test_EnemyAI>().TakeDamage(_damageFallOff);
+                        else if(hit.collider)
+                            hit.collider.gameObject.GetComponent<TestEnemy>().health -= _damageFallOff;
                     }
                 }
             }

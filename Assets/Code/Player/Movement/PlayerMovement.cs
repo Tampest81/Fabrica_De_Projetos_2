@@ -114,4 +114,15 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity /= 2;
         }
     }
+
+    // PlaceHolder //
+    [SerializeField] private float health;
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
