@@ -685,9 +685,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60fc377dcec6acb4b95ca77d9bf38aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistolSprite: {fileID: 21300000, guid: ab778275eeb57ef41bc2e801f709f8ae, type: 3}
-  shotgunSprite: {fileID: 21300000, guid: 34c921e42245a3a4c88cd58af61503c2, type: 3}
-  machinegunSprite: {fileID: 21300000, guid: 73a945706bf854a4e8ee57560cb5626e, type: 3}
+  pistolSprite: {fileID: 6641744445517263886, guid: 6dc41082ae3b8d545a79b02aa2bb2462,
+    type: 3}
+  shotgunSprite: {fileID: -6533717852452465260, guid: 6dc41082ae3b8d545a79b02aa2bb2462,
+    type: 3}
+  machinegunSprite: {fileID: -6966610807533527101, guid: 6dc41082ae3b8d545a79b02aa2bb2462,
+    type: 3}
   currentGunIndex: 0
   layersToHit:
     serializedVersion: 2
@@ -1180,6 +1183,7 @@ MonoBehaviour:
   hrMovementSpeed: 12.5
   jumpForce: 30
   dashSpeedMax: 80
+  health: 0
 --- !u!50 &738699326
 Rigidbody2D:
   serializedVersion: 4
