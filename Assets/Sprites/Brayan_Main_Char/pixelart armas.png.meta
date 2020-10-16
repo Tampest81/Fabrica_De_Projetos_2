@@ -1,7 +1,22 @@
 fileFormatVersion: 2
 guid: 6dc41082ae3b8d545a79b02aa2bb2462
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6641744445517263886
+    second: pixelart armas_0
+  - first:
+      213: -6966610807533527101
+    second: pixelart armas_1
+  - first:
+      213: -6533717852452465260
+    second: pixelart armas_2
+  - first:
+      213: -6578549234293741375
+    second: pixelart armas_3
+  - first:
+      213: -1221268845983831180
+    second: pixelart armas_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -85,7 +100,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: pixelart armas_0
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 1050
+        width: 220
+        height: 120
+      alignment: 9
+      pivot: {x: 0.25384146, y: 0.4668569}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e04fafb32673c2c50800000000000000
+      internalID: 6641744445517263886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelart armas_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 730
+        width: 210
+        height: 120
+      alignment: 9
+      pivot: {x: 0.2543731, y: 0.3888321}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf11989160a15f90800000000000000
+      internalID: -6966610807533527101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelart armas_2
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 420
+        width: 360
+        height: 150
+      alignment: 9
+      pivot: {x: 0.19798118, y: 0.4651005}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49551f5fa329355a0800000000000000
+      internalID: -6533717852452465260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelart armas_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 100
+        width: 170
+        height: 130
+      alignment: 9
+      pivot: {x: 0.41925362, y: 0.5167984}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c8e088735c44b4a0800000000000000
+      internalID: -6578549234293741375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pixelart armas_4
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 160
+        width: 190
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47be1e3847e2d0fe0800000000000000
+      internalID: -1221268845983831180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
