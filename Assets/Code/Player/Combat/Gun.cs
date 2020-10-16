@@ -113,7 +113,11 @@ public class Gun
                     {
                         if (hit.collider.GetComponent<Test_EnemyAI>())
                             hit.collider.gameObject.GetComponent<Test_EnemyAI>().TakeDamage(_damageFallOff);
-                        else if(hit.collider)
+                        else if (hit.collider.GetComponent<Enemy_Flying>())
+                            hit.collider.gameObject.GetComponent<Enemy_Flying>().TakeDamage(_damageFallOff);
+                        else if (hit.collider.GetComponent<Enemy_Boss>())
+                            hit.collider.gameObject.GetComponent<Enemy_Boss>().Damage(_damageFallOff);
+                        else if (hit.collider)
                             hit.collider.gameObject.GetComponent<TestEnemy>().health -= _damageFallOff;
                     }
                 }
