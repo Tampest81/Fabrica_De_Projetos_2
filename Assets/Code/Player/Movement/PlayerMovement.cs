@@ -26,30 +26,49 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private bool canDash;
 
+    private bool knockback;
+    private float knockbackTimer;
+    private bool didKnockback;
+
     private void Update()
     {
-        switch (isDashing) 
+        if (knockback)
         {
-            case true:
-                DashTimer();
-                break;
-            case false:
-                Jump();
-                WalkInput();
-                DashInput();
-                break;
+            Knockback();
+            KnockbackTimer();
+        }
+        else
+        {
+            switch (isDashing)
+            {
+                case true:
+                    DashTimer();
+                    break;
+                case false:
+                    Jump();
+                    WalkInput();
+                    DashInput();
+                    break;
+            }
         }
     }
     private void FixedUpdate()
     {
-        switch (isDashing)
+        if (knockback)
         {
-            case false:
-                Walk();
-                break;
-            case true:
-                Dash();
-                break;
+
+        }
+        else
+        {
+            switch (isDashing)
+            {
+                case false:
+                    Walk();
+                    break;
+                case true:
+                    Dash();
+                    break;
+            }
         }
     }
 
@@ -123,6 +142,39 @@ public class PlayerMovement : MonoBehaviour
         if (health <= 0)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    public void TakeDamage(float amount, bool doesKnockback)
+    {
+        health -= amount;
+        if (doesKnockback)
+        {
+            knockback = true;
+        }
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+    private void Knockback()
+    {
+        if (!didKnockback)
+        {
+            playerRB.velocity = new Vector3(-1, 1, 0).normalized * 25;
+            didKnockback = true;
+        }
+    }
+    private void KnockbackTimer()
+    {
+        knockbackTimer -= Time.deltaTime;
+        if (knockbackTimer <= 0)
+        {
+            knockback = false;
+            didKnockback = false;
+            knockbackTimer = 1;
         }
     }
 }
