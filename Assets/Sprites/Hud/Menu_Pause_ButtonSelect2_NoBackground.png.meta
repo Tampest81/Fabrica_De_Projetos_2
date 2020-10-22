@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: b6ae6655c68361a40bffac893449e782
+guid: ec8cfb4e0c9941741a9fffe7739481b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1815917584029440913
-    second: Sprite-0003.1_New_0
+      213: 2153204918370546689
+    second: Menu_Pause_ButtonSelect2_NoBackground_0
   - first:
-      213: -103143411528852576
-    second: Sprite-0003.1_New_1
+      213: 6918991216316926135
+    second: Menu_Pause_ButtonSelect2_NoBackground_1
+  - first:
+      213: -2480388580976173716
+    second: Menu_Pause_ButtonSelect2_NoBackground_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,13 +108,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0003.1_New_0
+      name: Menu_Pause_ButtonSelect2_NoBackground_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 181
-        width: 83
-        height: 14
+        x: 115
+        y: 59
+        width: 165
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +122,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f642a8614909cc6e0800000000000000
-      internalID: -1815917584029440913
+      spriteID: 104b9101778b1ed10800000000000000
+      internalID: 2153204918370546689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0003.1_New_1
+      name: Menu_Pause_ButtonSelect2_NoBackground_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 201
-        width: 5
-        height: 6
+        x: 121
+        y: 15
+        width: 153
+        height: 38
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +143,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ab96ea1d9f819ef0800000000000000
-      internalID: -103143411528852576
+      spriteID: 7b84e945ad1350060800000000000000
+      internalID: 6918991216316926135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Menu_Pause_ButtonSelect2_NoBackground_2
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 8
+        width: 373
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ddafd2ab3e39dd0800000000000000
+      internalID: -2480388580976173716
       vertices: []
       indices: 
       edges: []

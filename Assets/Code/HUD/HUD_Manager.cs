@@ -20,9 +20,8 @@ public class HUD_Manager : MonoBehaviour
     [Header("Player Script")]
     public Player player;
 
-    [Header("Text GameObjects")]
-    public Text score;
-    public Text life;
+    [Header("Sliders")]
+    public Slider life;
 
     [Header("Pause And GameOver GameObjects")]
     public GameObject PauseScreen;
@@ -30,15 +29,19 @@ public class HUD_Manager : MonoBehaviour
 
     bool Switch = false;
 
+    private void Start()
+    {
+        life.maxValue = player.hp;
+    }
+
     private void Update()
     {
         //HUD Txt Updater \/\/\/\/
-        life.text = "Life: " + player.hp;
-        score.text = "Score: " + player.score;
+        life.value = player.hp;
         //Hud Txt Updater /\/\/\/\
 
         //Pause And Unpause System \/\/\/\/\/\/\/\/\/\/
-        if (Input.GetKeyDown(KeyCode.A) & Switch == false)
+        if (Input.GetKeyDown(KeyCode.Escape) & Switch == false)
         {
             PauseScreen.SetActive(true);
             Switch = true;
@@ -46,7 +49,7 @@ public class HUD_Manager : MonoBehaviour
             GamePause();
         }
 
-        else if (Input.GetKeyDown(KeyCode.A) & Switch == true)
+        else if (Input.GetKeyDown(KeyCode.Escape) & Switch == true)
         {
             PauseScreen.SetActive(false);
             Switch = false;
@@ -80,6 +83,12 @@ public class HUD_Manager : MonoBehaviour
     public void GamePause()
     {
         Time.timeScale = 0;
+    }
+
+    public void GameResumeButton()
+    {
+        Time.timeScale = 1;
+        PauseScreen.SetActive(false);
     }
 
     public void GameResume()
