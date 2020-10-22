@@ -412,13 +412,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817642355}
-  m_LocalRotation: {x: 0, y: 0, z: 0.86602545, w: 0.49999994}
-  m_LocalPosition: {x: -9.76, y: 9.82, z: -0.64941406}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.03231608, w: -0.9994777}
+  m_LocalPosition: {x: 3.99, y: -0.01, z: -0.64941406}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1117271014}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 120}
+  m_Father: {fileID: 1896559484}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.7040002}
 --- !u!1 &838048203
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +754,7 @@ Transform:
   - {fileID: 1896559484}
   m_Father: {fileID: 1527071949}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 141.93901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 501.93903}
 --- !u!114 &1010642929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,7 +855,6 @@ Transform:
   - {fileID: 1812861955}
   - {fileID: 1007280100}
   - {fileID: 878959105}
-  - {fileID: 817642356}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -879,35 +878,35 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1527071951}
     m_ColliderPaths:
-    - - X: 20993578
-        Y: -7183023
-      - X: 14104264
-        Y: 51211988
-      - X: -50845288
-        Y: 43549384
-      - X: -43955976
-        Y: -14845629
+    - - X: 20778508
+        Y: -3497428
+      - X: 8524172
+        Y: 54011460
+      - X: -55439788
+        Y: 40381640
+      - X: -43185452
+        Y: -17127250
   - m_Collider: {fileID: 1268615384}
     m_ColliderPaths:
-    - - X: -10883102
-        Y: 83564432
-      - X: -44576160
-        Y: 84248456
-      - X: -45355576
-        Y: 45856372
-      - X: -11662521
-        Y: 45172348
+    - - X: -16574508
+        Y: 45617228
+      - X: -19344754
+        Y: 83917176
+      - X: -52956944
+        Y: 81486000
+      - X: -50186700
+        Y: 43186048
   m_CompositePaths:
     m_Paths:
-    - - {x: 2.0993578, y: -0.7183023}
-      - {x: 1.4104264, y: 5.1211987}
-      - {x: -1.1601477, y: 4.817928}
-      - {x: -1.0883102, y: 8.356443}
-      - {x: -4.457616, y: 8.424846}
-      - {x: -4.5355577, y: 4.585637}
-      - {x: -3.3355787, y: 4.5612755}
-      - {x: -5.084529, y: 4.3549385}
-      - {x: -4.3955975, y: -1.4845629}
+    - - {x: 2.0778508, y: -0.3497428}
+      - {x: 0.85241723, y: 5.401146}
+      - {x: -1.6791487, y: 4.861705}
+      - {x: -1.9344754, y: 8.391718}
+      - {x: -5.2956944, y: 8.1486}
+      - {x: -5.01867, y: 4.318605}
+      - {x: -3.8215253, y: 4.4051948}
+      - {x: -5.5439787, y: 4.038164}
+      - {x: -4.3185453, y: -1.712725}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0
 --- !u!50 &1117271016
@@ -949,6 +948,10 @@ MonoBehaviour:
   rangedCooldown: 3
   specialCooldown: 10
   attackCooldown: 5
+  meleeHitbox: {fileID: 1896559486}
+  mask:
+    serializedVersion: 2
+    m_Bits: 1024
   projectile: {fileID: 5076369218818604519, guid: 2bee7ecc65be92b4fa510a80ede1703b,
     type: 3}
   projectileOriginPos: {fileID: 817642356}
@@ -1665,7 +1668,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0.4978904, w: 0.86723995}
   m_LocalPosition: {x: 4.172354, y: 0.00000047683716, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 817642356}
   m_Father: {fileID: 1010642928}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -59.721004}
@@ -1711,8 +1715,11 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 4.1664147, y: 0.9132994}
-      - {x: 3.2033482, y: 0.8754004}
-      - {x: 2.6768513, y: 0.19203994}
+      - {x: 2.8540843, y: 0.7864126}
+      - {x: -0.44013608, y: 0.6600441}
+      - {x: -0.96484476, y: -0.20621762}
+      - {x: 0.38123566, y: -0.73366004}
+      - {x: 3.006432, y: -0.3036003}
       - {x: 3.4157338, y: -0.9191292}
       - {x: 4.6536574, y: -0.97922975}
       - {x: 4.81359, y: 0.09423283}
