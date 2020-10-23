@@ -6,7 +6,6 @@ public class Boss_Attacks : MonoBehaviour
 {
     private Animator animator;
 
-
     private GameObject player;
 
 
