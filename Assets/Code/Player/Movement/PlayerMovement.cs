@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // PlaceHolder //
-    [SerializeField] private float health;
+    [SerializeField] public float health;
     public void TakeDamage(float amount)
     {
         health -= amount;
