@@ -29,6 +29,9 @@ public class Boss_Attacks : MonoBehaviour
     Collider2D[] meleeHit = new Collider2D[1];
     [SerializeField] LayerMask mask;
     ContactFilter2D filter;
+    [SerializeField] private GameObject meleeShockwave;
+    [SerializeField] private float meleeShockwaveSpeed;
+    [SerializeField] private Transform shockWaveOriginPos;
 
     private bool attacking = false;
 
@@ -76,6 +79,16 @@ public class Boss_Attacks : MonoBehaviour
     {
         _meleeCooldown = meleeCooldown;
         _attackCooldown = attackCooldown;
+
+        var tmp1 = Instantiate(meleeShockwave, projectileOriginPos.position, Quaternion.identity);
+        tmp1.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 0) * meleeShockwaveSpeed;
+
+        var tmp2 = Instantiate(meleeShockwave, projectileOriginPos.position, Quaternion.identity);
+        tmp2.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0) * meleeShockwaveSpeed;
+
+        Destroy(tmp1, 2);
+        Destroy(tmp2, 2);
+
 
         Physics2D.OverlapCollider(meleeHitbox, filter, meleeHit);
 

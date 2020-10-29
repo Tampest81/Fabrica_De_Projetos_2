@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Test_EnemyAI : MonoBehaviour
+public class Enemy_Sentry : MonoBehaviour
 {
     [SerializeField] private float health;
 
@@ -34,7 +34,7 @@ public class Test_EnemyAI : MonoBehaviour
     private Gun attack;
 
     private float _attackTimeout;
-    [SerializeField] private float _attackCount = 0;
+    private float _attackCount = 0;
     [SerializeField] private float attackCount = 3;
     private float _timer2nomeruimporra;
 
@@ -51,7 +51,7 @@ public class Test_EnemyAI : MonoBehaviour
         _timer2nomeruimporra -= Time.deltaTime;
 
         _checkBoxPosition = new Vector3(this.transform.position.x + checkBoxPosition.x, this.transform.position.y);
-        playerDirection = (player.transform.position + new Vector3(0, .5f)) - (this.transform.position + new Vector3(0, 1));
+        if (player) playerDirection = (player.transform.position + new Vector3(0, .5f)) - (this.transform.position + new Vector3(0, 1));
         playerDirection.Normalize();
         LookForPlayer();
         playerDirAngle = Vector3.Angle(this.transform.right, playerDirection);
