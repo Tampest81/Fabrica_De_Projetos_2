@@ -59,7 +59,6 @@ public class Boss_Minion_Homing : MonoBehaviour
 
     public void TakeDamage()
     {
-
         Destroy(this.gameObject);
     }
 }
