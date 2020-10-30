@@ -84,6 +84,14 @@ public class Gun
         _ammoCurrent = _ammoMax;
         _magazineCurrent = _magazineMax;
     }
+    public void CollectAmmo(int amount)
+    {
+        _ammoCurrent += amount;
+        if (_ammoCurrent > _ammoMax)
+        {
+            _ammoCurrent = _ammoMax;
+        }
+    }
     private void _Shoot(Vector3 originPosition, Vector3 aimDirection, LayerMask mask)
     {
         _timeBetweenShotsCounter = _timeBetweenShots;
@@ -111,14 +119,24 @@ public class Gun
 
                     if (hit.collider.CompareTag("Enemy") && hit.distance <= (_range * 2))
                     {
-                        if (hit.collider.GetComponent<Test_EnemyAI>())
-                            hit.collider.gameObject.GetComponent<Test_EnemyAI>().TakeDamage(_damageFallOff);
+                        if (hit.collider.GetComponent<Enemy_Sentry>())
+                            hit.collider.gameObject.GetComponent<Enemy_Sentry>().TakeDamage(_damageFallOff);
+
+                        else if (hit.collider.GetComponent<Enemy_Zombie>())
+                            hit.collider.gameObject.GetComponent<Enemy_Zombie>().TakeDamage(_damageFallOff);
+
+                        else if (hit.collider.GetComponent<Enemy_Melee>())
+                            hit.collider.gameObject.GetComponent<Enemy_Melee>().TakeDamage(_damageFallOff);
+
                         else if (hit.collider.GetComponent<Enemy_Flying>())
                             hit.collider.gameObject.GetComponent<Enemy_Flying>().TakeDamage(_damageFallOff);
+
                         else if (hit.collider.GetComponent<Boss_Attacks>())
                             hit.collider.gameObject.GetComponent<Boss_Attacks>().Damage(_damageFallOff);
+
                         else if (hit.collider.GetComponent<Boss_Minion_Homing>())
                             hit.collider.GetComponent<Boss_Minion_Homing>().TakeDamage();
+
                         else if (hit.collider)
                             hit.collider.gameObject.GetComponent<TestEnemy>().health -= _damageFallOff;
                     }

@@ -342,6 +342,36 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &399052358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 399052359}
+  m_Layer: 9
+  m_Name: ShockwaveOriginPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &399052359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399052358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.49, y: -1.64, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1117271014}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &467644153
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +1004,7 @@ Transform:
   - {fileID: 1812861955}
   - {fileID: 1007280100}
   - {fileID: 878959105}
+  - {fileID: 399052359}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1066,11 +1097,15 @@ MonoBehaviour:
   meleeRange: 10
   rangedCooldown: 3
   specialCooldown: 10
-  attackCooldown: 5
+  attackCooldown: 2
   meleeHitbox: {fileID: 1896559486}
   mask:
     serializedVersion: 2
     m_Bits: 1024
+  meleeShockwave: {fileID: 3921274248391149140, guid: b84e17a5a2a34c54ba23be9417316803,
+    type: 3}
+  meleeShockwaveSpeed: 10
+  shockWaveOriginPos: {fileID: 399052359}
   projectile: {fileID: 5076369218818604519, guid: 2bee7ecc65be92b4fa510a80ede1703b,
     type: 3}
   projectileOriginPos: {fileID: 817642356}

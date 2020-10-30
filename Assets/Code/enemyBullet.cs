@@ -15,7 +15,7 @@ public class enemyBullet : MonoBehaviour
     void Update()
     {
         Physics2D.OverlapCollider(this.GetComponent<Collider2D>(), filter, hit);
-        if (hit[0].tag == "Player")
+        if (hit[0] && hit[0].tag == "Player")
         {
             hit[0].GetComponent<PlayerMovement>().TakeDamage(1);
             Destroy(this.gameObject);
