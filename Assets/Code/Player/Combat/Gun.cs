@@ -84,6 +84,14 @@ public class Gun
         _ammoCurrent = _ammoMax;
         _magazineCurrent = _magazineMax;
     }
+    public void CollectAmmo(int amount)
+    {
+        _ammoCurrent += amount;
+        if (_ammoCurrent > _ammoMax)
+        {
+            _ammoCurrent = _ammoMax;
+        }
+    }
     private void _Shoot(Vector3 originPosition, Vector3 aimDirection, LayerMask mask)
     {
         _timeBetweenShotsCounter = _timeBetweenShots;

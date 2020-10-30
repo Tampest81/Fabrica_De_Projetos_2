@@ -26,12 +26,29 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private bool canDash;
 
+    // Gambiarra louca //
+    private bool isOnGround;
+    private bool hasHitGround;
+    private float jumpFallTimer;
+
     private bool knockback;
     private float knockbackTimer;
     private bool didKnockback;
 
+    private WeaponManager weaponManager;
+
+    private Animator animator;
+
+    private void Start()
+    {
+        weaponManager = GetComponentInChildren<WeaponManager>();
+        animator = GetComponentInChildren<Animator>();
+    }
+
     private void Update()
     {
+        jumpFallTimer -= Time.deltaTime;
+
         if (knockback)
         {
             Knockback();
@@ -74,6 +91,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        isOnGround = Physics2D.OverlapCircle(new Vector2(this.transform.position.x, this.transform.position.y - 0.5f), 0.25f, ground);
+        if (isOnGround && !hasHitGround)
+        {
+            animator.Play("Jump Landing");
+            jumpFallTimer = .3f;
+            hasHitGround = true;
+        }
+
         if (Physics2D.OverlapCircle(new Vector2(this.transform.position.x, this.transform.position.y - 0.5f), 0.25f, ground))
         {
             canJump = true;
@@ -84,6 +109,9 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
             canJump = false;
+
+            animator.Play("Jump");
+            hasHitGround = false;
         }
         else if (Input.GetKeyUp(KeyCode.Space) && playerRB.velocity.y > 0)
         {
@@ -96,10 +124,17 @@ public class PlayerMovement : MonoBehaviour
         if (hrInput > 0)
         {
             this.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            if (isOnGround) animator.Play("Walk");
         }
         else if (hrInput < 0)
         {
             this.transform.rotation = Quaternion.Euler(0, 180, 0);
+            if (isOnGround) animator.Play("Walk");
+        }
+        else if (playerRB.velocity == Vector2.zero && jumpFallTimer <= 0)
+        {
+            animator.Play("Idle");
         }
     }
     private void Walk()
@@ -123,6 +158,8 @@ public class PlayerMovement : MonoBehaviour
     private void Dash()
     {
         playerRB.velocity = dashDirection * dashSpeed;
+
+        animator.Play("Dash");
     }
     private void DashTimer()
     {
@@ -175,6 +212,20 @@ public class PlayerMovement : MonoBehaviour
             knockback = false;
             didKnockback = false;
             knockbackTimer = 1;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Collectable_HP"))
+        {
+            Destroy(collision.gameObject);
+            TakeDamage(-5);
+        }
+        else if (collision.CompareTag("Collectable_Ammo"))
+        {
+            Destroy(collision.gameObject);
+            weaponManager.guns[weaponManager.currentGunIndex].CollectAmmo(20);
         }
     }
 }
