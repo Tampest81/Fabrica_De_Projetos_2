@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: -6832337868400549882
     second: Icon_NewATT1_1
+  - first:
+      213: -6352961141045756019
+    second: Icon_NewATT1_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -134,7 +137,7 @@ TextureImporter:
         width: 82
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,6 +145,27 @@ TextureImporter:
       bones: []
       spriteID: 600298078e8ae21a0800000000000000
       internalID: -6832337868400549882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon_NewATT1_2
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 35
+        width: 84
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f7b1c608fb5d7a0800000000000000
+      internalID: -6352961141045756019
       vertices: []
       indices: 
       edges: []
