@@ -3,33 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Enemy_Sentry : MonoBehaviour
+public class Enemy_Sentry : Enemy
 {
-    [SerializeField] private float health;
-
-    Rigidbody2D rb;
-
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] Vector3 checkBoxPosition;
-    [SerializeField] Vector3 checkBoxSize;
-    Vector3 _checkBoxPosition;
-    
-    [SerializeField] float walkSpeed;
-    [SerializeField] float waitTime;
-    float waitTimer;
-    bool waiting;
-
-    [SerializeField] LayerMask playerMask;
-    [SerializeField] float aggroRange;
-    [SerializeField] float aggroTime;
-    float aggroTimer;
-    GameObject player;
-    Vector3 playerDirection;
-    bool aggroed = false;
-
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed;
-    float playerDirAngle;
 
     private Gun attack;
 
@@ -75,11 +52,7 @@ public class Enemy_Sentry : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (aggroed)
-        {
-
-        }
-        else
+        if (!aggroed)
         {
             if (!waiting)
             {
@@ -87,63 +60,12 @@ public class Enemy_Sentry : MonoBehaviour
             }
         }
     }
-    private void OnDrawGizmos() // Visualização dos raycasts;
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(_checkBoxPosition, checkBoxSize);
 
         Gizmos.DrawRay(this.transform.position + new Vector3(0, 1), playerDirection * aggroRange);
-    }
-
-    private void Move()
-    {
-        rb.velocity = new Vector3(this.transform.right.x * walkSpeed, rb.velocity.y);
-    }
-    private void WaitCheck()
-    {
-        if (!Physics2D.OverlapBox(_checkBoxPosition, checkBoxSize, 0, groundLayer))
-        {
-            waiting = true;
-            waitTimer = waitTime;
-        }
-    }
-    private void Wait()
-    {
-        waitTimer -= Time.deltaTime;
-        if (waitTimer <= 0)
-        {
-            waiting = false;
-            Turn();
-        }
-    }
-    private void Turn()
-    {
-        this.transform.rotation = Quaternion.Euler(this.transform.rotation.eulerAngles + Quaternion.Euler(0, 180, 0).eulerAngles);
-        checkBoxPosition = -checkBoxPosition;
-    }
-    private void LookForPlayer()
-    {
-        RaycastHit2D hit;
-        if(Physics2D.Raycast(this.transform.position + new Vector3(0, 1), playerDirection, aggroRange, playerMask))
-        {
-            hit = Physics2D.Raycast(this.transform.position + new Vector3(0, 1), playerDirection, aggroRange, playerMask);
-            if (hit.collider.tag == "Player")
-            {
-                if (playerDirAngle < 60)
-                {
-                    aggroed = true;
-                    aggroTimer = aggroTime;
-                }
-            }
-        }
-    }
-    private void AggroTimer()
-    {
-        aggroTimer -= Time.deltaTime;
-        if (aggroTimer <= 0)
-        {
-            aggroed = false;
-        }
     }
     private void Attack()
     {
@@ -157,16 +79,6 @@ public class Enemy_Sentry : MonoBehaviour
         {
             _attackCount = 0;
             _timer2nomeruimporra = 3;
-        }
-    }
-    
-    // PlaceHolder //
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Destroy(this.gameObject);
         }
     }
 }

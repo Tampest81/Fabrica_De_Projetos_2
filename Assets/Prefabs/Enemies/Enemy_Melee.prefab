@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8754695998186006999}
   - component: {fileID: 8754695998186006998}
   - component: {fileID: 7082189128555987461}
+  - component: {fileID: 1960773230730729656}
   m_Layer: 9
   m_Name: Enemy_Melee
   m_TagString: Enemy
@@ -219,12 +220,29 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  checkBoxPosition: {x: 2, y: 0, z: 0}
-  checkBoxSize: {x: 1, y: 2, z: 0}
-  walkSpeed: 5
+  checkBoxPosition: {x: 2, y: -0.5, z: 0}
+  checkBoxSize: {x: 0.5, y: 1, z: 0}
+  walkSpeed: 7
   waitTime: 1
   playerMask:
     serializedVersion: 2
     m_Bits: 1024
-  aggroRange: 4
+  aggroRange: 5
   aggroTime: 1
+  attackHitbox: {fileID: 1960773230730729656}
+--- !u!58 &1960773230730729656
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754695998186006995}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.2, y: 0.5}
+  serializedVersion: 2
+  m_Radius: 0.5

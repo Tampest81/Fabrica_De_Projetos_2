@@ -138,8 +138,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  checkBoxPosition: {x: 2, y: 0, z: 0}
-  checkBoxSize: {x: 1, y: 2, z: 0}
+  checkBoxPosition: {x: 2, y: -0.5, z: 0}
+  checkBoxSize: {x: 0.5, y: 1, z: 0}
   walkSpeed: 4
   waitTime: 2
   playerMask:
