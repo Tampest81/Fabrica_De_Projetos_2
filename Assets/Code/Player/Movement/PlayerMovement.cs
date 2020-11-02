@@ -144,17 +144,27 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity = new Vector2(hrInput * hrMovementSpeed, playerRB.velocity.y);
         }
     }
+    //
+    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+        Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, z));
+        float distance;
+        xy.Raycast(ray, out distance);
+        return ray.GetPoint(distance);
+    }
     private void DashInput()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && canDash)
         {
-            dashDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position).normalized;
+            dashDirection = (GetWorldPositionOnPlane(Input.mousePosition, 0) - this.transform.position).normalized;
             dashDirection.Normalize();
             dashSpeed = dashSpeedMax;
             isDashing = true;
             canDash = false;
         }
     }
+    //
     private void Dash()
     {
         playerRB.velocity = dashDirection * dashSpeed;

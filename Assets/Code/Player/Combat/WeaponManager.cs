@@ -60,7 +60,8 @@ public class WeaponManager : MonoBehaviour
 
                 break;
         }
-        Aim();
+        //Aim();
+        AimPerspective();
         UpdateGunSprite();
 
         Debug.DrawRay(this.transform.position, aimDirection*10, Color.red);
@@ -72,6 +73,23 @@ public class WeaponManager : MonoBehaviour
         float rotZ = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
+    //
+    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+        Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, z));
+        float distance;
+        xy.Raycast(ray, out distance);
+        return ray.GetPoint(distance);
+    }
+    private void AimPerspective()
+    {
+        aimDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - this.transform.position;
+        aimDirection.Normalize();
+        float rotZ = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        this.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+    }
+    //
     private void SelectGun()
     {
         currentGunIndex += (int)Input.mouseScrollDelta.y;

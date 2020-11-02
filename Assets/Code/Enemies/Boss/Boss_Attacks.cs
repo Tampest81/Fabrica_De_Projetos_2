@@ -37,7 +37,7 @@ public class Boss_Attacks : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player"); // Adaptação pq eh um projeto diferente
+        player = GameObject.FindWithTag("Player");
         animator = this.GetComponent<Animator>();
 
         filter.layerMask = mask;
@@ -80,10 +80,10 @@ public class Boss_Attacks : MonoBehaviour
         _meleeCooldown = meleeCooldown;
         _attackCooldown = attackCooldown;
 
-        var tmp1 = Instantiate(meleeShockwave, projectileOriginPos.position, Quaternion.identity);
+        var tmp1 = Instantiate(meleeShockwave, shockWaveOriginPos.position, Quaternion.identity);
         tmp1.GetComponent<Rigidbody2D>().velocity = new Vector3(-1, 0) * meleeShockwaveSpeed;
 
-        var tmp2 = Instantiate(meleeShockwave, projectileOriginPos.position, Quaternion.identity);
+        var tmp2 = Instantiate(meleeShockwave, shockWaveOriginPos.position, Quaternion.identity);
         tmp2.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0) * meleeShockwaveSpeed;
 
         Destroy(tmp1, 2);
@@ -94,6 +94,7 @@ public class Boss_Attacks : MonoBehaviour
 
         if (meleeHit[0] && meleeHit[0].CompareTag("Player"))
         {
+            MonoBehaviour.print("MeleeHit");
             meleeHit[0].GetComponent<PlayerMovement>().TakeDamage(3, true);
         }
     }
