@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public float hp = 0;
     public float score = 0;
     private PlayerMovement player;
+    public HUD_Manager hud;
 
     private void Start()
     {
@@ -17,5 +18,15 @@ public class Player : MonoBehaviour
     private void Update()
     {
         hp = player.health;
+
+        if(hp <= 0)
+        {
+            hud.GameOver();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        hud.GameOver();
     }
 }

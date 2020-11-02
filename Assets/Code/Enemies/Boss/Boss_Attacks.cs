@@ -56,22 +56,25 @@ public class Boss_Attacks : MonoBehaviour
     }
     private void Attack()
     {
-        if (_attackCooldown <= 0)
+        if (player)
         {
-            if (_specialCooldown <= 0 && !attacking)
+            if (_attackCooldown <= 0)
             {
-                animator.Play("Boss_Attack_Special");
-                attacking = true;
-            }
-            else if (_meleeCooldown <= 0 && Vector2.Distance(this.transform.position, player.transform.position) < meleeRange && !attacking)
-            {
-                animator.Play("Boss_Attack_Melee");
-                attacking = true;
-            }
-            else if (_rangedCooldown <= 0 && !attacking)
-            {
-                animator.Play("Boss_Attack_Ranged");
-                attacking = true;
+                if (_specialCooldown <= 0 && !attacking)
+                {
+                    animator.Play("Boss_Attack_Special");
+                    attacking = true;
+                }
+                else if (_meleeCooldown <= 0 && Vector2.Distance(this.transform.position, player.transform.position) < meleeRange && !attacking)
+                {
+                    animator.Play("Boss_Attack_Melee");
+                    attacking = true;
+                }
+                else if (_rangedCooldown <= 0 && !attacking)
+                {
+                    animator.Play("Boss_Attack_Ranged");
+                    attacking = true;
+                }
             }
         }
     }
@@ -168,4 +171,12 @@ public class Boss_Attacks : MonoBehaviour
     {
         attacking = false;
     }
+
+    // Yey
+
+    private void OnDestroy()
+    {
+        Destroy(player.gameObject);
+    }
+
 }

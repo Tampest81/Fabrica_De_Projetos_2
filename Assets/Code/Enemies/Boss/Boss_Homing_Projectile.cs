@@ -27,13 +27,16 @@ public class Boss_Homing_Projectile : MonoBehaviour
     }
     void Update()
     {
-        playerDir = player.transform.position - this.transform.position;
-        playerDir.Normalize();
+        if (player)
+        {
+            playerDir = player.transform.position - this.transform.position;
+            playerDir.Normalize();
 
-        _damageTickRate -= Time.deltaTime;
+            _damageTickRate -= Time.deltaTime;
 
-        sprite.transform.position = this.transform.position;
-        sprite.transform.Rotate(new Vector3(0, 0, 1), spriteRotSpeed);
+            sprite.transform.position = this.transform.position;
+            sprite.transform.Rotate(new Vector3(0, 0, 1), spriteRotSpeed);
+        }
     }
     void FixedUpdate()
     {   
