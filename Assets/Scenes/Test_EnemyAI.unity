@@ -526,6 +526,7 @@ MonoBehaviour:
   hrMovementSpeed: 12.5
   jumpForce: 30
   dashSpeedMax: 80
+  isOnGround: 0
   health: 10
 --- !u!70 &939849626
 CapsuleCollider2D:
@@ -740,6 +741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60fc377dcec6acb4b95ca77d9bf38aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootOrigin: {fileID: 0}
+  tmpArr: []
   pistolSprite: {fileID: 21300000, guid: ab778275eeb57ef41bc2e801f709f8ae, type: 3}
   shotgunSprite: {fileID: 21300000, guid: 34c921e42245a3a4c88cd58af61503c2, type: 3}
   machinegunSprite: {fileID: 21300000, guid: 73a945706bf854a4e8ee57560cb5626e, type: 3}

@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash;
 
     // Gambiarra louca //
-    private bool isOnGround;
+    [SerializeField] private bool isOnGround;
     private bool hasHitGround;
     private float jumpFallTimer;
 
@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        startingHealth = health;
+
         weaponManager = GetComponentInChildren<WeaponManager>();
         animator = GetComponentInChildren<Animator>();
     }
@@ -183,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
 
     // PlaceHolder //
     [SerializeField] public float health;
+    private float startingHealth;
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -229,8 +232,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Collectable_HP"))
         {
+            float healAmount = startingHealth - health;
+            if (healAmount < 5)
+            {
+                TakeDamage(-healAmount);
+            }
+            else
+            {
+                TakeDamage(-5);
+            }
             Destroy(collision.gameObject);
-            TakeDamage(-5);
         }
         else if (collision.gameObject.CompareTag("Collectable_Ammo"))
         {

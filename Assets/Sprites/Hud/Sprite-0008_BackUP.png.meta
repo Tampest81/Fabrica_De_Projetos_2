@@ -138,10 +138,10 @@ TextureImporter:
       name: Sprite-0008_BackUP_1
       rect:
         serializedVersion: 2
-        x: 24
-        y: 16
-        width: 117
-        height: 86
+        x: 166
+        y: 68
+        width: 80
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,7 +160,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 166
-        y: 68
+        y: 49
         width: 80
         height: 15
       alignment: 0
@@ -181,7 +181,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 166
-        y: 49
+        y: 30
         width: 80
         height: 15
       alignment: 0
@@ -201,10 +201,10 @@ TextureImporter:
       name: Sprite-0008_BackUP_4
       rect:
         serializedVersion: 2
-        x: 166
-        y: 30
-        width: 80
-        height: 15
+        x: 24
+        y: 16
+        width: 117
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
