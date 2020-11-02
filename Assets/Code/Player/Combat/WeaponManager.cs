@@ -6,7 +6,8 @@ using UnityEditorInternal;
 public class WeaponManager : MonoBehaviour
 {
     [SerializeField] private Transform shootOrigin;
-
+    [SerializeField] private GameObject tmpTrail;
+    public static GameObject bulletTrail;
     [SerializeField] private GameObject[] tmpArr;
     [SerializeField] public static GameObject[] muzzleFlash;
     public static float rotZ;
@@ -32,6 +33,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
+        bulletTrail = tmpTrail;
         muzzleFlash = tmpArr;
 
         guns[0] = pistol;

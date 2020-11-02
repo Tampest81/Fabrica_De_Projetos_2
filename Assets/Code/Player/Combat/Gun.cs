@@ -52,7 +52,6 @@ public class Gun
                 if (Input.GetKey(KeyCode.Mouse0) && _timeBetweenShotsCounter <= 0 && _magazineCurrent > 0)
                 {
                     _Shoot(originPosition, aimDirection, mask);
-                    MuzzleFlash(originPosition);
                 }
             }
             else if (!_canHoldTrigger)
@@ -60,7 +59,6 @@ public class Gun
                 if (Input.GetKeyDown(KeyCode.Mouse0) && _timeBetweenShotsCounter <= 0 && _magazineCurrent > 0)
                 {
                     _Shoot(originPosition, aimDirection, mask);
-                    MuzzleFlash(originPosition);
                 }
             }
         }
@@ -105,6 +103,8 @@ public class Gun
 
             if (_isRaycast)
             {
+                ShootVisuals(originPosition, aimDirectionSpread);
+
                 Debug.DrawRay(originPosition, aimDirectionSpread * _range, Color.cyan, 0.1f);
 
                 RaycastHit2D hit;
@@ -153,10 +153,13 @@ public class Gun
         }
     }
 
-    private void MuzzleFlash(Vector3 originPos)
+    private void ShootVisuals(Vector3 originPos, Vector3 dir)
     {
         int i = Random.Range(0, WeaponManager.muzzleFlash.Length);
         var tmp = GameObject.Instantiate(WeaponManager.muzzleFlash[i], originPos, Quaternion.Euler(0, 0, WeaponManager.rotZ - 90));
+        var tmp2 = GameObject.Instantiate(WeaponManager.bulletTrail, originPos, Quaternion.identity);
+        tmp2.GetComponent<Rigidbody2D>().AddForce(dir * 10000);
         GameObject.Destroy(tmp, 0.1f);
+        GameObject.Destroy(tmp2, 0.5f);
     }
 }

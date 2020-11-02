@@ -612,8 +612,8 @@ MonoBehaviour:
   - {fileID: 796441224}
   - {fileID: 164684473}
   m_Bounds:
-    m_Center: {x: -0.089257345, y: -0.0605506, z: 0}
-    m_Extent: {x: 0.1512666, y: 0.25781327, z: 0}
+    m_Center: {x: -0.089257166, y: -0.06055063, z: 0}
+    m_Extent: {x: 0.15126666, y: 0.25781327, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &1962168888
@@ -749,6 +749,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootOrigin: {fileID: 4787079905074740225}
+  tmpTrail: {fileID: 5698289646374694735, guid: 4adec74aaab788a4f83fa9a41842ba87,
+    type: 3}
   tmpArr:
   - {fileID: 4533759970696271279, guid: 7b84e6b18b75b464383f538fb4186023, type: 3}
   - {fileID: 8660931481164086538, guid: f62c2dd891737484db1fcb11d2f78797, type: 3}
@@ -990,6 +992,7 @@ MonoBehaviour:
   hrMovementSpeed: 7
   jumpForce: 30
   dashSpeedMax: 80
+  isOnGround: 0
   health: 10
 --- !u!114 &5627338670395520614
 MonoBehaviour:
