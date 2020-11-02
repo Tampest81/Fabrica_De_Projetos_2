@@ -225,14 +225,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Collectable_HP"))
+        if (collision.gameObject.CompareTag("Collectable_HP"))
         {
             Destroy(collision.gameObject);
             TakeDamage(-5);
         }
-        else if (collision.CompareTag("Collectable_Ammo"))
+        else if (collision.gameObject.CompareTag("Collectable_Ammo"))
         {
             Destroy(collision.gameObject);
             weaponManager.guns[weaponManager.currentGunIndex].CollectAmmo(20);

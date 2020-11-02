@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Boss_Minion_Homing : MonoBehaviour
 {
+    [SerializeField] private GameObject HPDrop, AmmoDrop;
+
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float homingStrength;
 
@@ -60,5 +62,24 @@ public class Boss_Minion_Homing : MonoBehaviour
     public void TakeDamage()
     {
         Destroy(this.gameObject);
+        Drop();
+    }
+
+    private void Drop()
+    {
+        int chance = Random.Range(0, 100);
+        if (chance <= 1)
+        {
+            Instantiate(HPDrop, this.transform.position, Quaternion.identity);
+        }
+        else if(chance <= 6)
+        {
+            Instantiate(AmmoDrop, this.transform.position, Quaternion.identity);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Drop();
     }
 }

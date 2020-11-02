@@ -85,6 +85,7 @@ public class Boss_Attacks : MonoBehaviour
 
         var tmp2 = Instantiate(meleeShockwave, shockWaveOriginPos.position, Quaternion.identity);
         tmp2.GetComponent<Rigidbody2D>().velocity = new Vector3(1, 0) * meleeShockwaveSpeed;
+        tmp2.transform.rotation = Quaternion.Euler(0, 180, 0);
 
         Destroy(tmp1, 2);
         Destroy(tmp2, 2);
