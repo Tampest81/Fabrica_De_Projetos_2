@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Boss_Homing_Projectile : MonoBehaviour
 {
+    [SerializeField] private float spriteRotSpeed;
+    [SerializeField] private GameObject sprite;
+
     [SerializeField] private float projectileSpeed;
     [SerializeField] private float homingStrength;
 
@@ -18,6 +21,7 @@ public class Boss_Homing_Projectile : MonoBehaviour
 
     void Start()
     {
+        sprite = Instantiate(sprite, this.transform.position, Quaternion.identity);
         player = GameObject.FindWithTag("Player");
         rb = this.GetComponent<Rigidbody2D>();
     }
@@ -27,6 +31,9 @@ public class Boss_Homing_Projectile : MonoBehaviour
         playerDir.Normalize();
 
         _damageTickRate -= Time.deltaTime;
+
+        sprite.transform.position = this.transform.position;
+        sprite.transform.Rotate(new Vector3(0, 0, 1), spriteRotSpeed);
     }
     void FixedUpdate()
     {   
@@ -44,5 +51,9 @@ public class Boss_Homing_Projectile : MonoBehaviour
                 _damageTickRate = damageTickRate;
             }
         }
+    }
+    private void OnDestroy()
+    {
+        Destroy(sprite);
     }
 }

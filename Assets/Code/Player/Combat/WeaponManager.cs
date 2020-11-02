@@ -5,6 +5,13 @@ using UnityEditorInternal;
 
 public class WeaponManager : MonoBehaviour
 {
+    [SerializeField] private Transform shootOrigin;
+
+    [SerializeField] private GameObject[] tmpArr;
+    [SerializeField] public static GameObject[] muzzleFlash;
+    public static float rotZ;
+
+
     public static Vector2 aimDirection;
 
     [SerializeField] Sprite pistolSprite;
@@ -25,6 +32,8 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
+        muzzleFlash = tmpArr;
+
         guns[0] = pistol;
         guns[1] = shotgun;
         guns[2] = machinegun;
@@ -55,7 +64,7 @@ public class WeaponManager : MonoBehaviour
             case false:
 
                 SelectGun();
-                guns[currentGunIndex].Shoot(this.transform.position,aimDirection , layersToHit, true);
+                guns[currentGunIndex].Shoot(shootOrigin.position, aimDirection, layersToHit, true);
                 guns[currentGunIndex].Reload();
 
                 break;
@@ -66,11 +75,12 @@ public class WeaponManager : MonoBehaviour
 
         Debug.DrawRay(this.transform.position, aimDirection*10, Color.red);
     }
+
     private void Aim()
     {
-        aimDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
+        aimDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition) - shootOrigin.position;
         aimDirection.Normalize();
-        float rotZ = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        rotZ = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
     //
@@ -84,9 +94,9 @@ public class WeaponManager : MonoBehaviour
     }
     private void AimPerspective()
     {
-        aimDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - this.transform.position;
+        aimDirection = GetWorldPositionOnPlane(Input.mousePosition, 0) - shootOrigin.position;
         aimDirection.Normalize();
-        float rotZ = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        rotZ = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         this.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
     //

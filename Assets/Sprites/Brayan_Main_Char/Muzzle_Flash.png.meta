@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: dfd9a5b17bf2b7a4ab33d98a32431d8d
+guid: e0164bccbb83e7e4db9a6062c9e35be6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1429035744263139338
-    second: Boss_Shockwave_0
+      213: -6186496052242473049
+    second: Muzzle_Flash_0
   - first:
-      213: 4266341806153694297
-    second: Boss_Shockwave_1
+      213: 6657831829833406786
+    second: Muzzle_Flash_1
   - first:
-      213: 6229076703573976829
-    second: Boss_Shockwave_2
+      213: 6680660177145438883
+    second: Muzzle_Flash_2
+  - first:
+      213: 8065796546938514185
+    second: Muzzle_Flash_3
+  - first:
+      213: 8145598898069339368
+    second: Muzzle_Flash_2
+  - first:
+      213: -8402803027346073564
+    second: Muzzle_Flash_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -52,8 +61,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -108,13 +117,55 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss_Shockwave_0
+      name: Muzzle_Flash_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 16
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af1bb13e96252aa0800000000000000
+      internalID: -6186496052242473049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muzzle_Flash_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 24
+        width: 16
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 249528746ce556c50800000000000000
+      internalID: 6657831829833406786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Muzzle_Flash_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 96
+        width: 16
+        height: 24
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ff0cdbdf8b0b2ce0800000000000000
-      internalID: -1429035744263139338
+      spriteID: 8ec7c326a0bfa0170800000000000000
+      internalID: 8145598898069339368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_Shockwave_1
+      name: Muzzle_Flash_3
       rect:
         serializedVersion: 2
-        x: 128
+        x: 16
         y: 0
-        width: 128
-        height: 96
+        width: 16
+        height: 24
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,29 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95c7036c447153b30800000000000000
-      internalID: 4266341806153694297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Boss_Shockwave_2
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df620334240227650800000000000000
-      internalID: 6229076703573976829
+      spriteID: 428d575aa2f336b80800000000000000
+      internalID: -8402803027346073564
       vertices: []
       indices: 
       edges: []
