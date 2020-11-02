@@ -327,7 +327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6980566694953751221, guid: bb6379e20a064734c844c327b8a96481,
+  m_Sprite: {fileID: 4886288181992419531, guid: bb6379e20a064734c844c327b8a96481,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -562,7 +562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7186524088748103976, guid: bb6379e20a064734c844c327b8a96481,
+  m_Sprite: {fileID: 6980566694953751221, guid: bb6379e20a064734c844c327b8a96481,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -723,7 +723,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 66035647856052546, guid: bb6379e20a064734c844c327b8a96481, type: 3}
+  m_Sprite: {fileID: 7186524088748103976, guid: bb6379e20a064734c844c327b8a96481,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1127,7 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288ec6af8b2097a4d90f50a78d501e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene1: HudTest
+  Scene1: stage 01
   Scene2: Stage test
   Scene3: 
 --- !u!1 &1969475043
@@ -1242,8 +1243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4886288181992419531, guid: bb6379e20a064734c844c327b8a96481,
-    type: 3}
+  m_Sprite: {fileID: 66035647856052546, guid: bb6379e20a064734c844c327b8a96481, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
