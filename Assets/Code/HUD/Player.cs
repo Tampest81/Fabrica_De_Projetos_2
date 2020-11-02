@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         player = GetComponent<PlayerMovement>();
+        hp = player.health;
     }
     private void Update()
     {
