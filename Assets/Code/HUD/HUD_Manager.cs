@@ -96,4 +96,12 @@ public class HUD_Manager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void GameOver()
+    {
+        if (GameOverGameObject)
+        {
+            GameOverGameObject.SetActive(true);
+        }
+    }
+
 }

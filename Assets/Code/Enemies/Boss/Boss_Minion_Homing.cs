@@ -26,15 +26,18 @@ public class Boss_Minion_Homing : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
     }
     void Update()
-    {   
-        if(timer > 0)
+    {
+        if (player)
         {
-            timer -= Time.deltaTime;
-            this.transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+                this.transform.rotation = Quaternion.Euler(0, 0, rotZ - 90);
+            }
+            playerDir = player.transform.position - this.transform.position;
+            playerDir.Normalize();
+            rotZ = Mathf.Atan2(playerDir.y, playerDir.x) * Mathf.Rad2Deg;
         }
-        playerDir = player.transform.position - this.transform.position;
-        playerDir.Normalize();
-        rotZ = Mathf.Atan2(playerDir.y, playerDir.x) * Mathf.Rad2Deg;
     }
     void FixedUpdate()
     {   
