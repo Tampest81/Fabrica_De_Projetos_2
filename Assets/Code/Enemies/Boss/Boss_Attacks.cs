@@ -9,8 +9,8 @@ public class Boss_Attacks : MonoBehaviour
     private GameObject player;
 
 
-    [SerializeField] private float bossHp;
-
+    //[SerializeField] private float bossHp;
+    public float bossHp;
 
     [SerializeField] private float meleeCooldown;
     private float _meleeCooldown;
