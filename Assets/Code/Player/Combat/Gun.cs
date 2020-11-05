@@ -139,8 +139,8 @@ public class Gun
                         else if (hit.collider.GetComponent<Boss_Minion_Homing>())
                             hit.collider.GetComponent<Boss_Minion_Homing>().TakeDamage();
 
-                        else if (hit.collider)
-                            hit.collider.gameObject.GetComponent<TestEnemy>().health -= _damageFallOff;
+                        else if (hit.collider) ;
+                            //hit.collider.gameObject.GetComponent<TestEnemy>().health -= _damageFallOff;
                     }
                 }
             }
