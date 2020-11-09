@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -179,4 +180,24 @@ public class Boss_Attacks : MonoBehaviour
         Destroy(player.gameObject);
     }
 
+    private void CameraShake()
+    {
+        StartCoroutine(_cameraShake(5, 1));
+    }
+
+    [SerializeField] private CinemachineVirtualCamera cam;
+    private IEnumerator _cameraShake(float strength, float duration)
+    {
+        var camNoise = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        float decrement = strength / duration;
+
+        for (float i = duration; i > 0; i -= Time.deltaTime)
+        {
+            strength -= decrement * Time.deltaTime;
+            camNoise.m_AmplitudeGain = strength;
+            yield return null;
+        }
+
+        camNoise.m_AmplitudeGain = 0;
+    }
 }
