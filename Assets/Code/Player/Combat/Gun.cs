@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class Gun
     int _magazineMax;
     public int _magazineCurrent;
     int _bulletsPerShot;
-    float _range;
+    public float _range;
     float _timeBetweenShots;
     float _timeBetweenShotsCounter;
     float _spread;
@@ -18,7 +19,7 @@ public class Gun
     public float _reloadTimer;
     float _damagePerBullet;
     float _damageFallOff;
-    bool _canHoldTrigger;
+    public bool _canHoldTrigger;
     public bool _isReloading;
     private bool _isRaycast;
     public GameObject _projectilePrefab;
@@ -92,12 +93,16 @@ public class Gun
             _ammoCurrent = _ammoMax;
         }
     }
+
+    private WeaponManager _weaponManager;
+
     private void _Shoot(Vector3 originPosition, Vector3 aimDirection, LayerMask mask)
     {
         _timeBetweenShotsCounter = _timeBetweenShots;
         _magazineCurrent--;
         for (int i = 0; i < _bulletsPerShot; i++)
         {
+            
             Vector2 aimDirectionSpread = new Vector2(aimDirection.x + Random.Range(-_spread, _spread), aimDirection.y + Random.Range(-_spread, _spread));
             aimDirectionSpread.Normalize();
 
@@ -112,6 +117,7 @@ public class Gun
                 if (Physics2D.Raycast(originPosition, aimDirectionSpread, Mathf.Infinity, mask)) // Checks if Raycast hit in order to prevent error.
                 {
                     hit = Physics2D.Raycast(originPosition, aimDirectionSpread, Mathf.Infinity, mask);
+                    HitVisuals(hit.point, hit);
 
                     _damageFallOff = _damagePerBullet;
                     if (hit.distance > _range)
@@ -161,5 +167,16 @@ public class Gun
         tmp2.GetComponent<Rigidbody2D>().AddForce(dir * 10000);
         GameObject.Destroy(tmp, 0.1f);
         GameObject.Destroy(tmp2, 0.5f);
+    }
+    private void HitVisuals(Vector3 originPos, RaycastHit2D hit)
+    {
+        int i = Random.Range(0, WeaponManager.muzzleFlash.Length);
+        GameObject tmp = null;
+
+        float rotZ = Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg;
+
+        tmp = GameObject.Instantiate(WeaponManager.muzzleFlash[i], originPos, Quaternion.Euler(0, 0, rotZ - 90));
+
+        GameObject.Destroy(tmp, 0.1f);
     }
 }
