@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: Enemy_Boss_5
   m_EditorClassIdentifier: 
   m_ApiVersion: 4
-  m_Sprite: {fileID: 8501298984383440639, guid: 20a9dd09f6258ac44ac3752799e7e1d8,
+  m_Sprite: {fileID: 8501298984383440639, guid: 33ced59eb2227f8448ce59850e580a04,
     type: 3}
   m_SharedMesh: {fileID: -4549034595497416335}
   m_SharedMaterials: []
