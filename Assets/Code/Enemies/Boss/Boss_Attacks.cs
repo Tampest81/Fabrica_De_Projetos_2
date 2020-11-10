@@ -10,7 +10,7 @@ public class Boss_Attacks : MonoBehaviour
     private GameObject player;
 
 
-    //[SerializeField] private float bossHp;
+    private float bossHpVariation;
     public float bossHp;
 
     [SerializeField] private float meleeCooldown;
@@ -47,6 +47,7 @@ public class Boss_Attacks : MonoBehaviour
     {
         CooldownsCounter();
         Attack();
+        DamageFlash();
     }
     private void CooldownsCounter()
     {
@@ -199,5 +200,18 @@ public class Boss_Attacks : MonoBehaviour
         }
 
         camNoise.m_AmplitudeGain = 0;
+    }
+
+
+    [SerializeField] private GameObject damageFlashObj;
+    private Animator damageFlashAnimator;
+    private void DamageFlash()
+    {
+        damageFlashAnimator = damageFlashObj.GetComponent<Animator>();
+        if (bossHpVariation != bossHp)
+        {
+            damageFlashAnimator.Play("Boss_Damage_Flash");
+        }
+        bossHpVariation = bossHp;
     }
 }
