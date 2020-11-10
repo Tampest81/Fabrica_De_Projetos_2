@@ -138,7 +138,7 @@ public class WeaponManager : MonoBehaviour
 
         if (guns[currentGunIndex]._canHoldTrigger)
         {
-            while (guns[currentGunIndex]._magazineCurrent > 0 && Input.GetKey(KeyCode.Mouse0))
+            while (guns[currentGunIndex]._magazineCurrent > 0 && !Input.GetKeyUp(KeyCode.Mouse0))
             {
                 if (camNoise.m_AmplitudeGain <= strength)
                 {
