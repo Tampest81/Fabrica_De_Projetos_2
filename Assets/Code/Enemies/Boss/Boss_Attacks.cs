@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,12 @@ public class Boss_Attacks : MonoBehaviour
 {
     private Animator animator;
 
+    public Animator winAnim;
     private GameObject player;
 
 
-    [SerializeField] private float bossHp;
-
+    private float bossHpVariation;
+    public float bossHp;
 
     [SerializeField] private float meleeCooldown;
     private float _meleeCooldown;
@@ -46,6 +48,7 @@ public class Boss_Attacks : MonoBehaviour
     {
         CooldownsCounter();
         Attack();
+        DamageFlash();
     }
     private void CooldownsCounter()
     {
@@ -176,7 +179,40 @@ public class Boss_Attacks : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(player.gameObject);
+        winAnim.Play("Vitory"); // é ta escrito errado , pq na animação eu coloquei o nome errado...
     }
 
+    private void CameraShake()
+    {
+        StartCoroutine(_cameraShake(5, 1));
+    }
+
+    [SerializeField] private CinemachineVirtualCamera cam;
+    private IEnumerator _cameraShake(float strength, float duration)
+    {
+        var camNoise = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        float decrement = strength / duration;
+
+        for (float i = duration; i > 0; i -= Time.deltaTime)
+        {
+            strength -= decrement * Time.deltaTime;
+            camNoise.m_AmplitudeGain = strength;
+            yield return null;
+        }
+
+        camNoise.m_AmplitudeGain = 0;
+    }
+
+
+    [SerializeField] private GameObject damageFlashObj;
+    private Animator damageFlashAnimator;
+    private void DamageFlash()
+    {
+        damageFlashAnimator = damageFlashObj.GetComponent<Animator>();
+        if (bossHpVariation != bossHp)
+        {
+            damageFlashAnimator.Play("Boss_Damage_Flash");
+        }
+        bossHpVariation = bossHp;
+    }
 }

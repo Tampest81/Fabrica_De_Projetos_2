@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditorInternal;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -66,6 +66,12 @@ public class WeaponManager : MonoBehaviour
             case false:
 
                 SelectGun();
+                if (guns[currentGunIndex]._magazineCurrent > 0 && !guns[currentGunIndex]._isReloading && Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    if(guns[currentGunIndex] == pistol) StartCoroutine(ShootCamShake(1, .3f));
+                    else if(guns[currentGunIndex] == machinegun) StartCoroutine(ShootCamShake(1.5f, .2f));
+                    else StartCoroutine(ShootCamShake(2, .5f));
+                }
                 guns[currentGunIndex].Shoot(shootOrigin.position, aimDirection, layersToHit, true);
                 guns[currentGunIndex].Reload();
 
@@ -121,5 +127,40 @@ public class WeaponManager : MonoBehaviour
         {
             spriteRenderer.flipY = false;
         }
+    }
+
+    // Camera Shake //
+    [SerializeField] private CinemachineVirtualCamera cam;
+    public IEnumerator ShootCamShake(float strength, float duration)
+    {
+        var camNoise = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        float decrement = strength / duration;
+
+        if (guns[currentGunIndex]._canHoldTrigger)
+        {
+            while (guns[currentGunIndex]._magazineCurrent > 0 && !Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                if (camNoise.m_AmplitudeGain <= strength)
+                {
+                    camNoise.m_AmplitudeGain = strength;
+                }
+                yield return null;
+                if (!guns[currentGunIndex]._canHoldTrigger)
+                {
+                    break;
+                }
+            }
+        }
+
+        for (float i = duration; i > 0; i -= Time.deltaTime)
+        {
+            strength -= decrement * Time.deltaTime;
+            if (camNoise.m_AmplitudeGain <= strength)
+            {
+                camNoise.m_AmplitudeGain = strength;
+            }
+            yield return null;
+        }
+        camNoise.m_AmplitudeGain = 0;
     }
 }
