@@ -612,8 +612,8 @@ MonoBehaviour:
   - {fileID: 796441224}
   - {fileID: 164684473}
   m_Bounds:
-    m_Center: {x: -0.08925639, y: -0.06055063, z: 0}
-    m_Extent: {x: 0.15126947, y: 0.25781327, z: 0}
+    m_Center: {x: -0.08925718, y: -0.06055063, z: 0}
+    m_Extent: {x: 0.15126666, y: 0.25781327, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &1962168888
@@ -863,6 +863,7 @@ GameObject:
   - component: {fileID: 5627338670395520537}
   - component: {fileID: 5627338670395520614}
   - component: {fileID: 1391871484876225743}
+  - component: {fileID: 690535165054011906}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -1022,6 +1023,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7713ef11f5decd64ba88ad608eb6da05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &690535165054011906
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627338670395520536}
+  m_Enabled: 1
 --- !u!1 &5627338670962283456
 GameObject:
   m_ObjectHideFlags: 0
