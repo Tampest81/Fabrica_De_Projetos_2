@@ -7,6 +7,7 @@ public class Boss_Attacks : MonoBehaviour
 {
     private Animator animator;
 
+    public Animator winAnim;
     private GameObject player;
 
 
@@ -178,7 +179,7 @@ public class Boss_Attacks : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(player.gameObject);
+        winAnim.Play("Vitory"); // é ta escrito errado , pq na animação eu coloquei o nome errado...
     }
 
     private void CameraShake()
