@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip jump, shootPistol, rechargePistol, shootShotgun, reloadShotgun, shootMachineGun, reloadMachineGun, shootNoAmmo;
+
     [Header("Variáveis Gerais")]
     public Rigidbody2D playerRB;
     [SerializeField] private LayerMask ground;
@@ -40,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         startingHealth = health;
 
         weaponManager = GetComponentInChildren<WeaponManager>();
@@ -108,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
+            audioSource.PlayOneShot(jump, .2f);
             playerRB.velocity = new Vector2(playerRB.velocity.x, jumpForce);
             canJump = false;
 
@@ -158,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && canDash)
         {
+            audioSource.PlayOneShot(jump, .2f);
             dashDirection = (GetWorldPositionOnPlane(Input.mousePosition, 0) - this.transform.position).normalized;
             dashDirection.Normalize();
             dashSpeed = dashSpeedMax;

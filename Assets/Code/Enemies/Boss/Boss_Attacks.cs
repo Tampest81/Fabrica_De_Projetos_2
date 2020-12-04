@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Boss_Attacks : MonoBehaviour
 {
+    [Header("Audio Clips")]
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip meleeHitClip, summon, takeDamage; 
+
+    [Header("Organizado pra caramba")]
+
     private Animator animator;
 
     public Animator winAnim;
@@ -39,6 +45,8 @@ public class Boss_Attacks : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         player = GameObject.FindWithTag("Player");
         animator = this.GetComponent<Animator>();
 
@@ -83,6 +91,8 @@ public class Boss_Attacks : MonoBehaviour
     }
     private void Attack_Melee()
     {
+        audioSource.PlayOneShot(meleeHitClip, .5f);
+
         _meleeCooldown = meleeCooldown;
         _attackCooldown = attackCooldown;
 
@@ -153,7 +163,9 @@ public class Boss_Attacks : MonoBehaviour
     private void SpecialSpawn()
     {
         if(spawnsCount < numberOfSpawns)
-        {   
+        {
+            audioSource.PlayOneShot(summon, .05f);
+
             var tmp = Instantiate(toSpawn, spawnPos.position, Quaternion.identity);
             Destroy(tmp, 10);
             Invoke("SpecialSpawn", timeBetweenSpawns);
@@ -176,6 +188,7 @@ public class Boss_Attacks : MonoBehaviour
     }
 
     // Yey
+    //^^qq isso?
 
     private void OnDestroy()
     {
@@ -211,6 +224,8 @@ public class Boss_Attacks : MonoBehaviour
         damageFlashAnimator = damageFlashObj.GetComponent<Animator>();
         if (bossHpVariation != bossHp)
         {
+            audioSource.PlayOneShot(takeDamage, .2f);
+
             damageFlashAnimator.Play("Boss_Damage_Flash");
         }
         bossHpVariation = bossHp;

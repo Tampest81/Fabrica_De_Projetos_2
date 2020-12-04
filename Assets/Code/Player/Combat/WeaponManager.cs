@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    private PlayerMovement player;
+    private bool shooting;
+
     [SerializeField] private Transform shootOrigin;
     [SerializeField] private GameObject tmpTrail;
     public static GameObject bulletTrail;
@@ -51,9 +54,24 @@ public class WeaponManager : MonoBehaviour
         machinegun.ReloadOnAwake();
 
         spriteRenderer = this.GetComponent<SpriteRenderer>();
+
+        player = FindObjectOfType<PlayerMovement>();
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            shooting = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            shooting = false;
+        }
+        else if (guns[currentGunIndex]._magazineCurrent <= 0)
+        {
+            shooting = false;
+        }
+
         switch (guns[currentGunIndex]._isReloading)
         {
             case true:
@@ -66,14 +84,49 @@ public class WeaponManager : MonoBehaviour
             case false:
 
                 SelectGun();
-                if (guns[currentGunIndex]._magazineCurrent > 0 && !guns[currentGunIndex]._isReloading && Input.GetKeyDown(KeyCode.Mouse0))
+                if (!guns[currentGunIndex]._isReloading && Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    if(guns[currentGunIndex] == pistol) StartCoroutine(ShootCamShake(1, .3f));
-                    else if(guns[currentGunIndex] == machinegun) StartCoroutine(ShootCamShake(1.5f, .2f));
-                    else StartCoroutine(ShootCamShake(2, .5f));
+                    if (guns[currentGunIndex]._magazineCurrent > 0)
+                    {
+                        if (guns[currentGunIndex] == pistol)
+                        {
+                            StartCoroutine(ShootCamShake(1, .3f));
+                            player.audioSource.PlayOneShot(player.shootPistol);
+                        }
+                        else if (guns[currentGunIndex] == machinegun)
+                        {
+                            StartCoroutine(ShootCamShake(1.5f, .2f));
+                            StartCoroutine(MachineGunSound());
+                        }
+                        else
+                        {
+                            StartCoroutine(ShootCamShake(2, .5f));
+                            player.audioSource.PlayOneShot(player.shootShotgun, .5f);
+                        }
+                    }
+                    else 
+                    {
+                        player.audioSource.PlayOneShot(player.shootNoAmmo);
+                    }
                 }
                 guns[currentGunIndex].Shoot(shootOrigin.position, aimDirection, layersToHit, true);
-                guns[currentGunIndex].Reload();
+
+                if (Input.GetKeyDown(KeyCode.R) && guns[currentGunIndex]._ammoCurrent > 0 && guns[currentGunIndex]._magazineCurrent < guns[currentGunIndex]._magazineMax)
+                {
+                    if (guns[currentGunIndex] == pistol)
+                    {
+                        player.audioSource.PlayOneShot(player.rechargePistol, .5f);
+                    }
+                    else if (guns[currentGunIndex] == machinegun)
+                    {
+                        player.audioSource.PlayOneShot(player.reloadMachineGun, .5f);
+                    }
+                    else
+                    {
+                        player.audioSource.PlayOneShot(player.reloadShotgun);
+                    }
+                    guns[currentGunIndex].Reload();
+                }
 
                 break;
         }
@@ -83,6 +136,20 @@ public class WeaponManager : MonoBehaviour
 
         Debug.DrawRay(this.transform.position, aimDirection*10, Color.red);
     }
+
+    //
+
+    private IEnumerator MachineGunSound()
+    {
+        while (true)
+        {
+            if (!shooting) break;
+            player.audioSource.PlayOneShot(player.shootMachineGun, .5f);
+            yield return new WaitForSeconds(0.075f);
+        }
+    }
+
+    //
 
     private void Aim()
     {

@@ -8,7 +8,7 @@ public class Gun
 {
     int _ammoMax;
     public int _ammoCurrent;
-    int _magazineMax;
+    public int _magazineMax;
     public int _magazineCurrent;
     int _bulletsPerShot;
     public float _range;
@@ -42,7 +42,7 @@ public class Gun
         _projectileSpeed = projectileSpeed;
         gunSprite = sprite;
     }
-    
+
     public void Shoot(Vector3 originPosition, Vector3 aimDirection, LayerMask mask, bool isPlayer)
     {
         _timeBetweenShotsCounter -= Time.deltaTime;
@@ -50,9 +50,15 @@ public class Gun
         {
             if (_canHoldTrigger)
             {
-                if (Input.GetKey(KeyCode.Mouse0) && _timeBetweenShotsCounter <= 0 && _magazineCurrent > 0)
+                if (Input.GetKey(KeyCode.Mouse0) && _timeBetweenShotsCounter <= 0)
                 {
-                    _Shoot(originPosition, aimDirection, mask);
+                    if (_magazineCurrent > 0)
+                    {
+                        _Shoot(originPosition, aimDirection, mask);
+                    }
+                    else 
+                    {
+                    }
                 }
             }
             else if (!_canHoldTrigger)
@@ -68,17 +74,16 @@ public class Gun
             _Shoot(originPosition, aimDirection, mask);
         }
     }
+
     public void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R) && _ammoCurrent > 0 && _magazineCurrent < _magazineMax)
-        {
-            int reloadAmount = _magazineMax - _magazineCurrent;
-            if (_ammoCurrent < reloadAmount) reloadAmount = _ammoCurrent;
-            _ammoCurrent -= reloadAmount;
-            _magazineCurrent += reloadAmount;
-            _reloadTimer = _reloadDuration;
-            _isReloading = true;
-        }
+        
+        int reloadAmount = _magazineMax - _magazineCurrent;
+        if (_ammoCurrent < reloadAmount) reloadAmount = _ammoCurrent;
+        _ammoCurrent -= reloadAmount;
+        _magazineCurrent += reloadAmount;
+        _reloadTimer = _reloadDuration;
+        _isReloading = true;
     }
     public void ReloadOnAwake()
     {
