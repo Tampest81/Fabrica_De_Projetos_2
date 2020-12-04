@@ -21292,6 +21292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Zombie (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2759795811728795468, guid: 16173885cf0506041bf5fd7ce4284f2a,
+        type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16173885cf0506041bf5fd7ce4284f2a, type: 3}
 --- !u!1 &1892063356
@@ -21631,6 +21636,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7082189128555987461, guid: 1e584eeb673b8d746ba7aa6e5b4611e0,
+        type: 3}
+      propertyPath: health
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8754695998186006995, guid: 1e584eeb673b8d746ba7aa6e5b4611e0,
         type: 3}
       propertyPath: m_Name
