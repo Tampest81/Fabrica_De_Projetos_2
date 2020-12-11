@@ -4070,8 +4070,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8261e6f2e5fac44da64da2b23939e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorDefault: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  colorSelected: {r: 0.25, g: 0.65, b: 0.8, a: 1}
 --- !u!1 &1030673907
 GameObject:
   m_ObjectHideFlags: 0
@@ -5624,6 +5622,7 @@ GameObject:
   - component: {fileID: 1428215771}
   - component: {fileID: 1428215773}
   - component: {fileID: 1428215772}
+  - component: {fileID: 1428215774}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -5698,6 +5697,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1428215774
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428215770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!114 &1430860913 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5627338669804644538, guid: 7626955fa8b85fd408596f3bd90e1da6,
@@ -6534,6 +6549,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5627338669804644538, guid: 7626955fa8b85fd408596f3bd90e1da6,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 966685374}
     - target: {fileID: 5627338670395520536, guid: 7626955fa8b85fd408596f3bd90e1da6,
         type: 3}
       propertyPath: m_Name
